@@ -1,7 +1,7 @@
 package com.andigeeky.domain.characters.model
 
 data class Character(
-    val id : Int,
+    val id : CharacterId,
     val name : String,
     val status : CharacterStatus,
     val species: String,
