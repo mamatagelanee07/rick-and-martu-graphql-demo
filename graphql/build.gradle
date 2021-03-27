@@ -1,0 +1,64 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id("com.apollographql.apollo").version("2.5.5")
+}
+
+android {
+    def globalConfiguration = rootProject.extensions.getByName("ext")
+
+    compileSdkVersion globalConfiguration["androidCompileSdkVersion"]
+
+    defaultConfig {
+        minSdkVersion globalConfiguration["minSdkVersion"]
+        targetSdkVersion globalConfiguration["targetSdkVersion"]
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+apollo {
+    service("rickandmorty"){
+        generateKotlinModels.set(true)
+        schemaPath = "../java/com/andigeeky/rickandmorty/graphql/schema/schema.json"
+        introspection {
+            sourceSetName = "main"
+            endpointUrl = "https://rickandmortyapi.com/graphql"
+        }
+    }
+}
+
+dependencies {
+
+    def uiDependencies = rootProject.ext.uiDependencies
+    implementation uiDependencies.kotlin
+    implementation uiDependencies.core_ktx
+
+    def graphQLDependencies = rootProject.ext.graphQLDependencies
+    implementation graphQLDependencies.apollo_runtime
+    implementation graphQLDependencies.apollo_coroutine_support
+
+    def unitTestDependencies = rootProject.ext.unitTestDependencies
+    testImplementation unitTestDependencies.junit
+
+    def integrationTestDependencies = rootProject.ext.integrationTestDependencies
+    androidTestImplementation integrationTestDependencies.junit_ext
+    androidTestImplementation integrationTestDependencies.espresso
+}
