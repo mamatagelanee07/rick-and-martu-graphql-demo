@@ -35,14 +35,7 @@ android {
 }
 
 apollo {
-    service("rickandmorty"){
-        generateKotlinModels.set(true)
-        schemaPath = "../java/com/andigeeky/rickandmorty/graphql/schema/schema.json"
-        introspection {
-            sourceSetName = "main"
-            endpointUrl = "https://rickandmortyapi.com/graphql"
-        }
-    }
+    generateKotlinModels.set(true)
 }
 
 dependencies {
