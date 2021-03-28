@@ -18,6 +18,8 @@ ext {
     material = "1.2.1"
     constraint_layout = "2.0.4"
 
+    apollo = "2.5.5"
+
     junit = "4.13.2"
     junit_ext = "1.1.2"
     espresso = "3.3.0"
@@ -40,6 +42,11 @@ ext {
 
     integrationTestDependencies = [
             junit_ext: "androidx.test.ext:junit:${junit_ext}",
-            espresso: "androidx.test.espresso:espresso-core:${espresso}"
+            espresso : "androidx.test.espresso:espresso-core:${espresso}"
+    ]
+
+    graphQLDependencies = [
+            apollo_runtime          : "com.apollographql.apollo:apollo-runtime:${apollo}",
+            apollo_coroutine_support: "com.apollographql.apollo:apollo-coroutines-support:${apollo}",
     ]
 }

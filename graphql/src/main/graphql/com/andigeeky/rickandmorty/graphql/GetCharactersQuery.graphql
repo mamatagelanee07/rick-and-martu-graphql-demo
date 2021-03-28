@@ -1,0 +1,7 @@
+query GetCharactersQuery($page: Int!, $filter: FilterCharacter){
+    characters(page: $page, filter: $filter){
+        results{
+            name
+        }
+    }
+}

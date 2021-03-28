@@ -1,3 +1,4 @@
+include ':graphql'
 include ':domain'
 include ':app'
 rootProject.name = "RickAndMortyGraphQLDemo"
