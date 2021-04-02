@@ -32,15 +32,34 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
+    implementation project(":graphql")
+
     def uiDependencies = rootProject.ext.uiDependencies
     implementation uiDependencies.kotlin
     implementation uiDependencies.core_ktx
     implementation uiDependencies.appcompat
     implementation uiDependencies.material
     implementation uiDependencies.constraintlayout
+    implementation uiDependencies.uniflow_core
+    implementation uiDependencies.uniflow_android
+    implementation uiDependencies.coil
+    implementation uiDependencies.navigation_fragment_ktx
+    implementation uiDependencies.navigation_ui_ktx
+
+    def diDependencies = rootProject.ext.diDependencies
+    implementation diDependencies.koin
+    implementation diDependencies.koin_android
+    implementation diDependencies.koin_android_viewmodel
+
+    def graphQLDependencies = rootProject.ext.graphQLDependencies
+    implementation graphQLDependencies.apollo_runtime
+    implementation graphQLDependencies.apollo_coroutine_support
 
     def unitTestDependencies = rootProject.ext.unitTestDependencies
     testImplementation unitTestDependencies.junit
