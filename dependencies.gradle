@@ -17,8 +17,13 @@ ext {
     app_compact = "1.2.0"
     material = "1.2.1"
     constraint_layout = "2.0.4"
+    uniflow_version = "1.0.4"
+    coil = "1.1.1"
+    navigation = "2.3.4"
 
     apollo = "2.5.5"
+
+    koin = "2.2.2"
 
     junit = "4.13.2"
     junit_ext = "1.1.2"
@@ -29,11 +34,22 @@ ext {
     ]
 
     uiDependencies = [
-            kotlin          : "org.jetbrains.kotlin:kotlin-stdlib:${kotlin_version}",
-            core_ktx        : "androidx.core:core-ktx:${core_ktx}",
-            appcompat       : "androidx.appcompat:appcompat:${app_compact}",
-            material        : "com.google.android.material:material:${material}",
-            constraintlayout: "androidx.constraintlayout:constraintlayout:${constraint_layout}"
+            kotlin                 : "org.jetbrains.kotlin:kotlin-stdlib:${kotlin_version}",
+            core_ktx               : "androidx.core:core-ktx:${core_ktx}",
+            appcompat              : "androidx.appcompat:appcompat:${app_compact}",
+            material               : "com.google.android.material:material:${material}",
+            constraintlayout       : "androidx.constraintlayout:constraintlayout:${constraint_layout}",
+            uniflow_core           : "org.uniflow-kt:uniflow-core:$uniflow_version",
+            uniflow_android        : "org.uniflow-kt:uniflow-android:$uniflow_version",
+            coil                   : "io.coil-kt:coil:$coil",
+            navigation_fragment_ktx: "androidx.navigation:navigation-fragment-ktx:$navigation",
+            navigation_ui_ktx      : "androidx.navigation:navigation-ui-ktx:$navigation"
+    ]
+
+    diDependencies = [
+            koin                  : "org.koin:koin-core:${koin}",
+            koin_android          : "org.koin:koin-android:${koin}",
+            koin_android_viewmodel: "org.koin:koin-androidx-viewmodel:${koin}"
     ]
 
     unitTestDependencies = [
