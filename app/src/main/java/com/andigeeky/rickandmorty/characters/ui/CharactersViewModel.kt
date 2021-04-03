@@ -29,30 +29,34 @@ class CharactersViewModel(private val dataSource: CharactersDataSource) : Androi
         sendEvent(CharactersEvent.HideLoadingCharacters)
     }
 
-    fun loadNextPageCharacters(page: Int) = actionOn<CharactersState> { previous ->
-        sendEvent(CharactersEvent.ShowLoadingNextPageCharacters)
-        val response = dataSource.getCharacters(page, previous.filter)
-        when {
-            response.data != null -> setState(
-                previous.copy(
-                    nextPage = response.data?.characters?.info?.next ?: 0,
-                    totalPages = response.data?.characters?.info?.pages,
-                    characters = response.data?.characters
-                        .map()
-                        .plus(previous.characters)
-                        .sortedBy { it.id?.id?.toInt() }
-                        .toSet()
+    fun loadNextPageCharacters(page: Int?) = actionOn<CharactersState> { previous ->
+        page?.let {
+            sendEvent(CharactersEvent.ShowLoadingNextPageCharacters)
+            val response = dataSource.getCharacters(page, previous.filter)
+            when {
+                response.data != null -> setState(
+                    previous.copy(
+                        nextPage = response.data?.characters?.info?.next,
+                        totalPages = response.data?.characters?.info?.pages,
+                        characters = response.data?.characters
+                            .map()
+                            .plus(previous.characters)
+                            .sortedBy { it.id?.id?.toInt() }
+                            .toSet()
+                    )
                 )
-            )
-            response.hasErrors() -> sendEvent(CharactersEvent.ShowPersistentError(R.string.error_characters_loading))
+                response.hasErrors() -> sendEvent(CharactersEvent.ShowPersistentError(R.string.error_characters_loading))
+            }
+            sendEvent(CharactersEvent.HideLoadingNextPageCharacters)
         }
-        sendEvent(CharactersEvent.HideLoadingNextPageCharacters)
     }
 
     fun sendLoadNextPageEvent() = actionOn<CharactersState> {
         it.totalPages?.let { total ->
-            if (it.nextPage <= total) {
-                sendEvent(CharactersEvent.LoadNextCharactersPage(it.nextPage))
+            it.nextPage?.let { next ->
+                if (next <= total) {
+                    sendEvent(CharactersEvent.LoadNextCharactersPage(next))
+                }
             }
         }
     }

@@ -9,5 +9,5 @@ sealed class CharactersEvent : UIEvent(){
     object ShowLoadingNextPageCharacters : CharactersEvent()
     object HideLoadingNextPageCharacters : CharactersEvent()
     data class ShowPersistentError(@StringRes val message : Int) : CharactersEvent()
-    data class LoadNextCharactersPage(val page : Int) : CharactersEvent()
+    data class LoadNextCharactersPage(val page : Int?) : CharactersEvent()
 }

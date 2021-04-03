@@ -6,7 +6,7 @@ import com.apollographql.apollo.api.Input
 import io.uniflow.core.flow.data.UIState
 
 data class CharactersState(
-    val nextPage : Int,
+    val nextPage : Int?,
     val totalPages : Int?,
     val filter: Input<FilterCharacter>,
     val characters : Set<Character>
