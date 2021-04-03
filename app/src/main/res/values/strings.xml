@@ -3,5 +3,7 @@
 
     <string name="error_characters_loading">There is an error while loading characters!</string>
     <string name="title_activity_home">Home</string>
-    <string name="title_characters">Home</string>
+    <string name="title_characters">Characters</string>
+    <string name="characters_subtitle_no_of_episodes">"Episodes: %d"</string>
+    <string name="characters_title_character_name">"%s. %s"</string>
 </resources>
