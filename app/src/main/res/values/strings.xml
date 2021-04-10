@@ -3,4 +3,13 @@
 
     <string name="error_characters_loading">There is an error while loading characters!</string>
     <string name="title_characters">Characters</string>
+
+    <!-- Character Details -->
+    <string name="character_details_name">Name : %s</string>
+    <string name="character_details_status">Status : %s</string>
+    <string name="character_details_species">Species : %s</string>
+    <string name="character_details_gender">Gender : %s</string>
+    <string name="character_details_origin_location">Origin : %s</string>
+    <string name="character_details_current_location">Location : %s</string>
+    <string name="character_details_episodes">Episodes : %d</string>
 </resources>

@@ -24,7 +24,7 @@ class CharactersAdapter(val onItemClick: (characterId: Character) -> Unit) :
             holder.image.load(it)
         }
         holder.title.text = characters[position].name.orEmpty()
-        holder.subtitle.text = characters[position].gender.gender
+        holder.subtitle.text = characters[position].gender.key
         holder.itemView.setOnClickListener {
             onItemClick(characters[position])
         }
