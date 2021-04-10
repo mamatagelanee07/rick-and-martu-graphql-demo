@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.andigeeky.rickandmorty.characters.di.characters_module
 import com.andigeeky.rickandmorty.databinding.FragmentCharactersBinding
 import io.uniflow.android.livedata.onEvents
@@ -15,7 +16,13 @@ import org.koin.core.context.loadKoinModules
 
 class CharactersFragment : Fragment() {
     private val vm : CharactersViewModel by viewModel()
-    private val adapter = CharactersAdapter()
+    private val adapter = CharactersAdapter {
+        it.id?.id?.let { id ->
+            findNavController().navigate(
+                CharactersFragmentDirections.navigateToCharacterDetail(id)
+            )
+        }
+    }
     private lateinit var binding : FragmentCharactersBinding
 
     override fun onCreateView(
