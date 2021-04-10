@@ -1,5 +1,7 @@
 package com.andigeeky.rickandmorty.characters.model
 
+import com.andigeeky.rickandmorty.common.model.Gender
+import com.andigeeky.rickandmorty.common.model.ID
 import com.andigeeky.rickandmorty.graphql.GetCharactersQuery
 
 data class Character(
@@ -10,24 +12,9 @@ data class Character(
     val episodes: List<Episode>
 )
 
-enum class Gender(val gender: String) {
-    FEMALE("Female"),
-    MALE("Male"),
-    GENDERLESS("Genderless"),
-    UNKNOWN("unknown");
-
-    companion object {
-        fun get(gender: String?): Gender {
-            return values().find { it.gender == gender } ?: UNKNOWN
-        }
-    }
-}
-
 data class Episode(
     val id: ID
 )
-
-inline class ID(val id: String?)
 
 fun GetCharactersQuery.Characters?.map(): List<Character> {
     return this?.results?.map { character ->
