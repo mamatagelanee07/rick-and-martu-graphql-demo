@@ -1,6 +1,6 @@
 package com.andigeeky.rickandmorty.common.model
 
-enum class Gender(val gender: String) {
+enum class Gender(val key: String) {
     FEMALE("Female"),
     MALE("Male"),
     GENDERLESS("Genderless"),
@@ -8,7 +8,7 @@ enum class Gender(val gender: String) {
 
     companion object {
         fun get(gender: String?): Gender {
-            return values().find { it.gender == gender } ?: UNKNOWN
+            return values().find { it.key == gender } ?: UNKNOWN
         }
     }
 }
