@@ -9,9 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.andigeeky.rickandmorty.R
 import com.andigeeky.rickandmorty.characters.model.Character
-import com.andigeeky.rickandmorty.characters.model.Gender
+import com.andigeeky.rickandmorty.common.model.Gender
 
-class CharactersAdapter : RecyclerView.Adapter<CharactersAdapter.CharacterViewHolder>() {
+class CharactersAdapter(val onItemClick: (characterId: Character) -> Unit) :
+    RecyclerView.Adapter<CharactersAdapter.CharacterViewHolder>() {
     private val characters = mutableListOf<Character>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -40,6 +41,9 @@ class CharactersAdapter : RecyclerView.Adapter<CharactersAdapter.CharacterViewHo
                 Gender.UNKNOWN -> R.drawable.ic_transgender_black_24dp
             }
         )
+        holder.itemView.setOnClickListener {
+            onItemClick(characters[position])
+        }
     }
 
     override fun getItemCount() = characters.size
