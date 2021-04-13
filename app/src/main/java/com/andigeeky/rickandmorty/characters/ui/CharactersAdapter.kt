@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.andigeeky.rickandmorty.R
 import com.andigeeky.rickandmorty.characters.model.Character
-import com.andigeeky.rickandmorty.characters.model.Gender
+import com.andigeeky.rickandmorty.common.model.Gender
 
 class CharactersAdapter(val onItemClick: (characterId: Character) -> Unit) :
     RecyclerView.Adapter<CharactersAdapter.CharacterViewHolder>() {
